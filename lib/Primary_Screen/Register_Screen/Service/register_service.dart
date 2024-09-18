@@ -36,7 +36,7 @@ class RegisterService {
        print(response.body);
        Navigator.push(
            context,
-           MaterialPageRoute(builder: (context)=>ProductListPage(fullname: name,))
+           MaterialPageRoute(builder: (context)=>ProductListPage())
        );
      }else if (response.statusCode==400){
        print("mobilenumberr");

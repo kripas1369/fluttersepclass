@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttersepclass/productsDetails.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductListPage extends StatefulWidget {
-  final fullname ;
-  const ProductListPage({super.key ,required this.fullname});
+  const ProductListPage({super.key });
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -15,14 +15,24 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
 ///Service or Server connection
 
+  String? email;
+  String? password;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fetchProductData();
+    _loadCredentials();
   }
 
+  // Load email and password from SharedPreferences
+  Future<void> _loadCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('e');
+      password = prefs.getString('p');
+    });
+  }
 
   List<Products> productList = [];
   Future<void> fetchProductData() async{
@@ -45,7 +55,7 @@ class _ProductListPageState extends State<ProductListPage> {
     return  Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.green,
-        title: Text(widget.fullname,style: TextStyle(color: Colors.white),),
+        title: Text("$password"),
         centerTitle: true,
       ),
       body: productList.isEmpty

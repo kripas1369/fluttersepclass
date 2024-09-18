@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttersepclass/Primary_Screen/Login_Screen/body.dart';
 import 'package:fluttersepclass/Primary_Screen/Register_Screen/Service/register_service.dart';
 import 'package:fluttersepclass/Primary_Screen/Register_Screen/Widgets/textfield.dart';
 import 'package:fluttersepclass/productlistpage.dart';
@@ -76,21 +77,31 @@ class _BodyState extends State<Body> {
           ),
         SizedBox(height: 30,),
           
-          MaterialButton(
-            color: Colors.blueAccent,
-            onPressed: (){
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MaterialButton(
+                color: Colors.blueAccent,
+                onPressed: (){
 
-              if(_formKey.currentState!.validate() ){
-                RegisterService().registerUser(
-                    name: fullnameController.text,
-                    mobilenumber: mobilenumber.text,
-                    email: emailController.text,
-                    password: passwordController.text,
-                    context: context
-                );
-              }
-            },
-            child: Text("Register"),)
+                  if(_formKey.currentState!.validate() ){
+                    RegisterService().registerUser(
+                        name: fullnameController.text,
+                        mobilenumber: mobilenumber.text,
+                        email: emailController.text,
+                        password: passwordController.text,
+                        context: context
+                    );
+                  }
+                },
+                child: Text("Register"),),
+              TextButton(onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context)=>LoginScreen()));
+              },
+                  child: Text("Login"))
+            ],
+          )
 
         ],
       ),
