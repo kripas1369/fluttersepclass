@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersepclass/Primary_Screen/Login_Screen/Service/loginService.dart';
 import 'package:fluttersepclass/Primary_Screen/Register_Screen/Widgets/textfield.dart';
+import 'package:fluttersepclass/Secondary_Screen/Meetinglist_Screen/Service/Meetinghistory_service.dart';
 
 
 class Body extends StatefulWidget {
@@ -13,8 +14,8 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController emailController =TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController =TextEditingController(text: "9860486269");
+  TextEditingController passwordController = TextEditingController(text: "Admin@12");
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -60,7 +61,7 @@ class _BodyState extends State<Body> {
                     Loginservice().loginUser(
                         email: emailController.text,
                         password: passwordController.text, context: context);
-
+                      MeetinghistoryService().fetchMeetingData();
                   }
                 },
                 child: Text("Login"),),

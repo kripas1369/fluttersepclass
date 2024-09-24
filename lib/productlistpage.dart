@@ -17,6 +17,7 @@ class _ProductListPageState extends State<ProductListPage> {
 
   String? email;
   String? password;
+  String? token;
 
   @override
   void initState() {
@@ -31,6 +32,7 @@ class _ProductListPageState extends State<ProductListPage> {
     setState(() {
       email = prefs.getString('e');
       password = prefs.getString('p');
+      token = prefs.getString("access_token");
     });
   }
 
@@ -55,7 +57,7 @@ class _ProductListPageState extends State<ProductListPage> {
     return  Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.green,
-        title: Text("$password"),
+        title: Text("$token"),
         centerTitle: true,
       ),
       body: productList.isEmpty

@@ -39,6 +39,8 @@ class Loginservice {
       );
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
+      final token = jsonDecode(response.body)["access"];
+      await prefs.setString("access_token",token);
       await prefs.setString('e', email);
       await prefs.setString('p', password);
     }else if (response.statusCode==400){
